@@ -1,59 +1,43 @@
 #include 'Integer.h'
 
-/*
-#include <iostream>
-
-class	Integer
-{
-	int	value;
-
-	public:
-		Integer();
-		Integer(int value);
-		Integer(const Integer& other);
-		Integer operator=(const Integer& other);
-		Integer operator+(int value);
-		Integer operator^(int ex);
-		operator int();
-		friend std::ostream& operator <<(std::ostream& os, const Integer&);
-		friend std::istream& operator >>(std::istream& os, Integer&);
-};
-*/
-
 Integer::Integer(int value): this->value(value) {}
 
 Integer::Integer(const Integer& other)
 {
-	value = other.value;
+	this->value = other.value;
 }
 
-Integer::operator=(const Integer& other)
+Integer Integer::operator=(const Integer& other)
 {
-	value = other.value;	
+	return Integer(this->value = other.value);    
 }
 
-Integer::operator+(int value)
+Integer Integer::operator+(int value)
 {
-	return this->value += value;
+	return Integer(this->value + value);
 }
 
-Integer::operator^(int ex)
+Integer Integer::operator^(int ex)
 {
+	n = this->value;
 	for(int i = 0; i < ex; i++)
-		value *= ex;
+		n *= this->value;
+	return Integer(this->value = n);
 }
 
 Integer::operator int()
 {
-	return (int)value;
+	return (int)this->value;
 }
 
-friend std::ostream& operator <<(std::ostream& os, const Integer&)
+std::ostream& operator <<(std::ostream& os, const Integer&)
 {
-	os << value;
+	os << this->value;
+	return os;
 }
 
-friend std::istream& operator >>(std::istream& os, Integer&)
+std::istream& operator >>(std::istream& os, Integer&)
 {
-	in >> value;
+	os >> this->value;
+	return os;
 }
