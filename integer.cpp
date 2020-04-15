@@ -1,11 +1,15 @@
-#include 'Integer.h'
+#include "integer.h"
 
-Integer::Integer(int value): this->value(value) {}
+Integer::Integer() { value = 0;}
+
+Integer::Integer(int value): value(value) {}
 
 Integer::Integer(const Integer& other)
 {
 	this->value = other.value;
 }
+
+Integer::~Integer() {}
 
 Integer Integer::operator=(const Integer& other)
 {
@@ -19,7 +23,7 @@ Integer Integer::operator+(int value)
 
 Integer Integer::operator^(int ex)
 {
-	n = this->value;
+	int n = this->value;
 	for(int i = 0; i < ex; i++)
 		n *= this->value;
 	return this->value = n;
